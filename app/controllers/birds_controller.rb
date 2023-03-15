@@ -1,5 +1,5 @@
 class BirdsController < ApplicationController
-    
+
     def index 
         bird = Bird.all
         if bird 
@@ -12,7 +12,7 @@ class BirdsController < ApplicationController
     def show 
         bird = Bird.find(params[:id])
         if bird 
-            render json: bird, status: :ok
+            render json: bird, except: [:created_at, :updated_at], status: :ok
         else
             render json: {error: "Bird not found"}, status: :not_found
         end
